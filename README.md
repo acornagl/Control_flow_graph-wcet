@@ -1,5 +1,6 @@
 # Control flow graph and relative WCET project
 This project deals with two principal objectives:
+
 1. To realize the __control flow graph__ of any executable code relying on its mixed code produced from _trace32 mixed mode_
 2. To produce the __WCET__ application of the generated control flow graph only if its hardware performances are known
 
