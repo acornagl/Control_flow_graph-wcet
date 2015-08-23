@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no" ?>
+<?xml-stylesheet type="text/xsl" href="t32transform.xsl"?>
+<TRACE32 file="C:\exporting\validity_interface__log_failure.xml">
+	<listing>
+		<List.EXPORT ts="1437481657" t32ver="R.2014.09.000058270" t32pv="POWERPC" cpu="MPC8349">
+			<mixed module="\\spum8349_main\validity_interface">
+				<hll><src>...</src></hll>
+				<hll><line>21</line><src>--</src></hll>
+				<hll><line>22</line><src>-- Implements Requirements:</src></hll>
+				<hll><line>23</line><src>--</src></hll>
+				<hll><line>24</line><src>--</src></hll>
+				<hll><line>25</line><src>--</src></hll>
+				<hll><line>26</line><src>--------------------------------------------------------------------------------</src></hll>
+				<hll><line>27</line><src>separate (VALIDITY_INTERFACE)</src></hll>
+				<hll><line>28</line><src></src></hll>
+				<hll><line>29</line><src>procedure LOG_FAILURE</src></hll>
+				<asm><addr>SP:FFE0B884</addr><code>9421FFF0</code><label>validity_interface__log_failure:</label><mnemonic>stwu      r1,-0x10(r1)</mnemonic><comment>r1,-16(r1)</comment></asm>
+				<asm><addr>SP:FFE0B888</addr><code>7C0802A6</code><mnemonic>mflr      r0</mnemonic></asm>
+				<asm><addr>SP:FFE0B88C</addr><code>90010014</code><mnemonic>stw       r0,0x14(r1)</mnemonic><comment>r0,20(r1)</comment></asm>
+			</mixed>
+			<mixed module="\\spum8349_main\validity_interface">
+				<hll><line>30</line><src>is</src></hll>
+				<hll><line>31</line><src>begin</src></hll>
+				<hll><line>32</line><src>    -- Check stucked validity status</src></hll>
+				<hll><line>33</line><src>    if VALIDITY_FAIL_STUCK_FLAG</src></hll>
+				<asm><addr>SP:FFE0B890</addr><code>3D200000</code><mnemonic>lis       r9,0x0</mnemonic><comment>r9,0</comment></asm>
+				<asm><addr>SP:FFE0B894</addr><code>88094225</code><mnemonic>lbz       r0,0x4225(r9)</mnemonic><comment>r0,16933(r9)</comment></asm>
+				<asm><addr>SP:FFE0B898</addr><code>2F800000</code><mnemonic>cmpwi     cr7,r0,0x0</mnemonic><comment>cr7,r0,0</comment></asm>
+				<asm><addr>SP:FFE0B89C</addr><code>41BE0028</code><mnemonic>beq       cr7,0xFFE0B8C4</mnemonic><comment>cr7,0xFFE0B8C4 (+)</comment></asm>
+			</mixed>
+			<mixed module="\\spum8349_main\validity_interface">
+				<hll><line>34</line><src>    then</src></hll>
+				<hll><line>35</line><src>        FAILURE_HANDLER.NVM_STORE_FAILURE_RECORD(</src></hll>
+				<asm><addr>SP:FFE0B8A0</addr><code>3D20FFE1</code><mnemonic>lis       r9,-0x1F</mnemonic><comment>r9,-31</comment></asm>
+				<asm><addr>SP:FFE0B8A4</addr><code>8869C12F</code><mnemonic>lbz       r3,-0x3ED1(r9)</mnemonic><comment>r3,-16081(r9)</comment></asm>
+				<asm><addr>SP:FFE0B8A8</addr><code>3D20FFE1</code><mnemonic>lis       r9,-0x1F</mnemonic><comment>r9,-31</comment></asm>
+				<asm><addr>SP:FFE0B8AC</addr><code>A089BFEE</code><mnemonic>lhz       r4,-0x4012(r9)</mnemonic><comment>r4,-16402(r9)</comment></asm>
+				<asm><addr>SP:FFE0B8B0</addr><code>3D200000</code><mnemonic>lis       r9,0x0</mnemonic><comment>r9,0</comment></asm>
+				<asm><addr>SP:FFE0B8B4</addr><code>88A933ED</code><mnemonic>lbz       r5,0x33ED(r9)</mnemonic><comment>r5,13293(r9)</comment></asm>
+				<asm><addr>SP:FFE0B8B8</addr><code>3CC0FFE1</code><mnemonic>lis       r6,-0x1F</mnemonic><comment>r6,-31</comment></asm>
+				<asm><addr>SP:FFE0B8BC</addr><code>38C6DDB0</code><mnemonic>subi      r6,r6,0x2250</mnemonic><comment>r6,r6,8784</comment></asm>
+				<asm><addr>SP:FFE0B8C0</addr><code>4BFFDDB1</code><mnemonic>bl        0xFFE09670</mnemonic><comment>failure_handler__nvm_store_failure_record</comment></asm>
+			</mixed>
+			<mixed module="\\spum8349_main\validity_interface">
+				<hll><line>36</line><src>            SEVERITY        =&gt; FAILURE_TYPES.SEVERITY_LUT(FAILURE_TYPES.PBIT_VAL_STUCK_NOT_GOOD),</src></hll>
+				<hll><line>37</line><src>            FAILURE_ID      =&gt; FAILURE_TYPES.FAILURE_LUT(FAILURE_TYPES.PBIT_VAL_STUCK_NOT_GOOD),</src></hll>
+				<hll><line>38</line><src>            MODULE_ID       =&gt; FAILURE_TYPES.MODULE_LUT(FAILURE_TYPES.IO_BOARD_1),</src></hll>
+				<hll><line>39</line><src>            ADDITIONAL_WORD =&gt; FAILURE_TYPES.ADDITIONAL_WORD_ARRAY_TYPE&apos;(</src></hll>
+				<hll><line>40</line><src>                others =&gt; PUM_TYPES.WORD_TYPE&apos;first));</src></hll>
+				<hll><line>41</line><src>    end if;</src></hll>
+				<hll><line>42</line><src></src></hll>
+				<hll><line>43</line><src>    -- Check validity status BITE result</src></hll>
+				<hll><line>44</line><src>    if VALIDITY_FAIL_DETECT_FLAG</src></hll>
+				<asm><addr>SP:FFE0B8C4</addr><code>3D200000</code><mnemonic>lis       r9,0x0</mnemonic><comment>r9,0</comment></asm>
+				<asm><addr>SP:FFE0B8C8</addr><code>88094226</code><mnemonic>lbz       r0,0x4226(r9)</mnemonic><comment>r0,16934(r9)</comment></asm>
+				<asm><addr>SP:FFE0B8CC</addr><code>2F800000</code><mnemonic>cmpwi     cr7,r0,0x0</mnemonic><comment>cr7,r0,0</comment></asm>
+				<asm><addr>SP:FFE0B8D0</addr><code>419E0028</code><mnemonic>beq       cr7,0xFFE0B8F8</mnemonic><comment>cr7,0xFFE0B8F8 (-)</comment></asm>
+			</mixed>
+			<mixed module="\\spum8349_main\validity_interface">
+				<hll><line>45</line><src>    then</src></hll>
+				<hll><line>46</line><src>        FAILURE_HANDLER.NVM_STORE_FAILURE_RECORD(</src></hll>
+				<asm><addr>SP:FFE0B8D4</addr><code>3D20FFE1</code><mnemonic>lis       r9,-0x1F</mnemonic><comment>r9,-31</comment></asm>
+				<asm><addr>SP:FFE0B8D8</addr><code>8869C130</code><mnemonic>lbz       r3,-0x3ED0(r9)</mnemonic><comment>r3,-16080(r9)</comment></asm>
+				<asm><addr>SP:FFE0B8DC</addr><code>3D20FFE1</code><mnemonic>lis       r9,-0x1F</mnemonic><comment>r9,-31</comment></asm>
+				<asm><addr>SP:FFE0B8E0</addr><code>A089BFF0</code><mnemonic>lhz       r4,-0x4010(r9)</mnemonic><comment>r4,-16400(r9)</comment></asm>
+				<asm><addr>SP:FFE0B8E4</addr><code>3D200000</code><mnemonic>lis       r9,0x0</mnemonic><comment>r9,0</comment></asm>
+				<asm><addr>SP:FFE0B8E8</addr><code>88A933ED</code><mnemonic>lbz       r5,0x33ED(r9)</mnemonic><comment>r5,13293(r9)</comment></asm>
+				<asm><addr>SP:FFE0B8EC</addr><code>3CC00000</code><mnemonic>lis       r6,0x0</mnemonic><comment>r6,0</comment></asm>
+				<asm><addr>SP:FFE0B8F0</addr><code>38C641D4</code><mnemonic>addi      r6,r6,0x41D4</mnemonic><comment>r6,r6,validity_interface__validity_mng_additional_word</comment></asm>
+				<asm><addr>SP:FFE0B8F4</addr><code>4BFFDD7D</code><mnemonic>bl        0xFFE09670</mnemonic><comment>failure_handler__nvm_store_failure_record</comment></asm>
+			</mixed>
+			<mixed module="\\spum8349_main\validity_interface">
+				<hll><line>47</line><src>            SEVERITY        =&gt; FAILURE_TYPES.SEVERITY_LUT(FAILURE_TYPES.PBIT_VAL_BITE_FAIL),</src></hll>
+				<hll><line>48</line><src>            FAILURE_ID      =&gt; FAILURE_TYPES.FAILURE_LUT(FAILURE_TYPES.PBIT_VAL_BITE_FAIL),</src></hll>
+				<hll><line>49</line><src>            MODULE_ID       =&gt; FAILURE_TYPES.MODULE_LUT(FAILURE_TYPES.IO_BOARD_1),</src></hll>
+				<hll><line>50</line><src>            ADDITIONAL_WORD =&gt; VALIDITY_MNG_ADDITIONAL_WORD);</src></hll>
+				<hll><line>51</line><src>    end if;</src></hll>
+				<hll><line>52</line><src></src></hll>
+				<hll><line>53</line><src>end LOG_FAILURE;</src></hll>
+				<asm><addr>SP:FFE0B8F8</addr><code>80010014</code><mnemonic>lwz       r0,0x14(r1)</mnemonic><comment>r0,20(r1)</comment></asm>
+				<asm><addr>SP:FFE0B8FC</addr><code>7C0803A6</code><mnemonic>mtlr      r0</mnemonic></asm>
+				<asm><addr>SP:FFE0B900</addr><code>38210010</code><mnemonic>addi      r1,r1,0x10</mnemonic><comment>r1,r1,16</comment></asm>
+				<asm><addr>SP:FFE0B904</addr><code>980B4234</code><mnemonic>blr       </mnemonic></asm>
+			</mixed>
+		</List.EXPORT>
+	</listing>
+</TRACE32>
